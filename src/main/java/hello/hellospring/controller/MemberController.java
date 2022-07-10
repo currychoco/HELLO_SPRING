@@ -19,15 +19,15 @@ public class MemberController {
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
+
 	
-	/*
-	 * @PostMapping(value = "/member/join") public String
-	 * joinMember(@RequestParam(name = "name") String name, Model model) { Member
-	 * newMember = new Member(); newMember.setName(name); long id =
-	 * memberService.join(newMember); newMember.setId(id);
-	 * 
-	 * model.addAttribute("member", newMember);
-	 * 
-	 * return "joinMember"; }
-	 */
+	 @PostMapping(value = "/member/join") public String
+	 joinMember(@RequestParam(name = "name") String name, Model model) { Member
+	 newMember = new Member(); newMember.setName(name); long id =
+	 memberService.join(newMember); newMember.setId(id);
+	 
+	 model.addAttribute("member", newMember);
+	 
+	 return "joinMember"; }
+	 
 }
