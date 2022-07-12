@@ -3,6 +3,7 @@ package hello.hellospring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,13 +22,18 @@ public class MemberController {
 	}
 
 	
-	 @PostMapping(value = "/member/join") public String
-	 joinMember(@RequestParam(name = "name") String name, Model model) { Member
-	 newMember = new Member(); newMember.setName(name); long id =
-	 memberService.join(newMember); newMember.setId(id);
-	 
-	 model.addAttribute("member", newMember);
-	 
-	 return "joinMember"; }
+	@GetMapping("/members/new")
+	public String createForm() {
+		return "members/createMemberForm";
+	}
+	
+	@PostMapping(value = "/members/new/")
+	public String create(MemberForm form) {
+		Member member = new Member();
+		member.setName(form.getName());
+		memberService.join(member);
+		
+		return "redirect/";
+	}
 	 
 }
